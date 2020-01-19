@@ -1,6 +1,6 @@
 {
-  "name": "@barcode/ean",
-  "version": "1.0.0",
+  "name": "@es-barcodes/ean",
+  "version": "1.0.1",
   "description": "EAN bar-codes encoder",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SanichKotikov/barcode.git"
+    "url": "git+https://github.com/SanichKotikov/es-barcodes.git"
   },
   "bugs": {
-    "url": "https://github.com/SanichKotikov/barcode/issues"
+    "url": "https://github.com/SanichKotikov/es-barcodes/issues"
   },
-  "homepage": "https://github.com/SanichKotikov/barcode",
+  "homepage": "https://github.com/SanichKotikov/es-barcodes/tree/master/packages/ean",
   "size-limit": [
     {
       "path": "lib/index.js"

@@ -1,4 +1,4 @@
-# @barcode/ean
+# @es-barcodes/ean
 
 EAN bar-codes encoder.
 
