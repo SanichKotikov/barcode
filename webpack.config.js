@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const MODE = process.env.NODE_ENV;
 const IS_PROD = MODE === 'production';
@@ -40,6 +41,9 @@ module.exports = {
   },
   plugins: [
     IS_PROD && new CleanWebpackPlugin(),
+    new CopyPlugin([
+      { from: 'examples/styles.css', to: '' },
+    ]),
     IS_PROD && new webpack.HashedModuleIdsPlugin({
       hashFunction: 'sha256',
       hashDigest: 'hex',
