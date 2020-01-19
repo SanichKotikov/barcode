@@ -1,0 +1,33 @@
+{
+  "name": "@barcode/ean",
+  "version": "1.0.0",
+  "description": "EAN bar-codes encoder",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "author": "Sanich Kotikov <sancho@cdrpro.ru> (https://sanichkotikov.github.io)",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "size": "size-limit",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SanichKotikov/barcode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SanichKotikov/barcode/issues"
+  },
+  "homepage": "https://github.com/SanichKotikov/barcode",
+  "size-limit": [
+    {
+      "path": "lib/index.js"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "3.0.0",
+    "typescript": "3.7.4"
+  }
+}

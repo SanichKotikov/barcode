@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": "examples",
+    "target": "es6",
+    "module": "es6",
+    "moduleResolution": "node",
+    "lib": ["dom", "es6"],
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "downlevelIteration": true,
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true
+  },
+  "include": [
+    "examples/**/*",
+    "packages"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
