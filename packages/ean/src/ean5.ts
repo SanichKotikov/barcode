@@ -3,12 +3,9 @@ import { IEncoding } from './types';
 import encodeEAN from './encoder';
 
 function checksum(data: string) {
-  const result = data
-    .split('')
-    .map(n => +n)
-    .reduce((sum, a, idx) => {
-      return idx % 2 ? sum + a * 9 : sum + a * 3;
-    }, 0);
+  const result = data.split('').reduce((sum, curr, idx) => (
+    idx % 2 ? sum + +curr * 9 : sum + +curr * 3
+  ), 0);
   return result % 10;
 }
 

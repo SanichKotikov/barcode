@@ -8,12 +8,10 @@ interface IEAN13Options extends IOptions {
 }
 
 function checksum(number: string) {
-  const res = number
-    .substr(0, 12)
-    .split('')
-    .map(n => +n)
-    .reduce((sum, a, idx) => (idx % 2 ? sum + a * 3 : sum + a), 0);
-  return (10 - (res % 10)) % 10;
+  const result = number.substr(0, 12).split('').reduce((sum, curr, idx) => (
+    idx % 2 ? sum + +curr * 3 : sum + +curr
+  ), 0);
+  return ((10 - (result % 10)) % 10).toString();
 }
 
 function leftSide(data: string) {
@@ -35,7 +33,10 @@ function getEncodings(data: string): Readonly<ISideEncoding> {
 }
 
 function valid(data: string) {
-  return data.search(/^[0-9]{13}$/) !== -1 && +data[12] === checksum(data);
+  return (
+    data.search(/^[0-9]{13}$/) !== -1 &&
+    data[12] === checksum(data)
+  );
 }
 
 function encode(data: string, options?: IEAN13Options) {

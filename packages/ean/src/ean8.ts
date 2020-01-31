@@ -7,12 +7,10 @@ interface IEAN8Options extends IOptions {
 }
 
 function checksum(number: string) {
-  const res = number
-    .substr(0, 7)
-    .split('')
-    .map(n => +n)
-    .reduce((sum, a, idx) => (idx % 2 ? sum + a : sum + a * 3), 0);
-  return (10 - (res % 10)) % 10;
+  const result = number.substr(0, 7).split('').reduce((sum, curr, idx) => (
+    idx % 2 ? sum + +curr : sum + +curr * 3
+  ), 0);
+  return ((10 - (result % 10)) % 10).toString();
 }
 
 function leftSide(data: string) {
@@ -33,7 +31,10 @@ function getEncodings(data: string): ISideEncoding {
 }
 
 function valid(data: string) {
-  return data.search(/^[0-9]{8}$/) !== -1 && +data[7] === checksum(data);
+  return (
+    data.search(/^[0-9]{8}$/) !== -1 &&
+    data[7] === checksum(data)
+  );
 }
 
 function encode(data: string, options?: IEAN8Options) {
