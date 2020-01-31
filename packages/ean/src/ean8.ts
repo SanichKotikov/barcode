@@ -37,7 +37,10 @@ function valid(data: string) {
 }
 
 function encode(data: string, options?: IEAN8Options) {
+  if (/^[0-9]{7}$/.test(data)) data += checksum(data);
+  if (!valid(data)) throw new RangeError();
   const encodings = getEncodings(data);
+
   return options?.flat
     ? encodeFlat(data, encodings)
     : encodeGuarded(data, encodings);
