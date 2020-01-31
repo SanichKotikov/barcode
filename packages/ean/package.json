@@ -1,6 +1,6 @@
 {
   "name": "@es-barcodes/ean",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "EAN bar-codes encoder",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "size": "size-limit",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,9 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "3.0.0",
+    "@types/jest": "24.9.1",
+    "jest": "25.1.0",
+    "ts-jest": "25.0.0",
     "typescript": "3.7.4"
   }
 }

@@ -1,3 +1,4 @@
+export const EMPTY_BIN = '00000000';
 export const SIDE_BIN = '101';
 export const MIDDLE_BIN = '01010';
 

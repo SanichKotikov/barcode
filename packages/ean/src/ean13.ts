@@ -1,4 +1,4 @@
-import { EAN13_STRUCTURE, SIDE_BIN, MIDDLE_BIN } from './constants';
+import { EAN13_STRUCTURE, EMPTY_BIN, SIDE_BIN, MIDDLE_BIN } from './constants';
 import { IOptions, IEncoding, ISideEncoding } from './types';
 import encodeEAN from './encoder';
 
@@ -24,7 +24,7 @@ function rightSide(data: string) {
   return data.substr(7, 6);
 }
 
-function getEncodings(data: string): ISideEncoding {
+function getEncodings(data: string): Readonly<ISideEncoding> {
   const leftData = leftSide(data);
   const leftStructure = EAN13_STRUCTURE[data[0]];
   const rightData = rightSide(data);
@@ -34,7 +34,13 @@ function getEncodings(data: string): ISideEncoding {
   };
 }
 
+function valid(data: string) {
+  return data.search(/^[0-9]{13}$/) !== -1 && +data[12] === checksum(data);
+}
+
 function encode(data: string, options?: IEAN13Options) {
+  if (/^[0-9]{12}$/.test(data)) data += checksum(data);
+  if (!valid(data)) throw new RangeError();
   const encodings = getEncodings(data);
 
   return options?.flat
@@ -42,15 +48,11 @@ function encode(data: string, options?: IEAN13Options) {
     : encodeGuarded(data, encodings, options);
 }
 
-function valid(data: string) {
-  return data.search(/^[0-9]{13}$/) !== -1 && +data[12] === checksum(data);
-}
-
 function encodeGuarded(
   data: string,
   encodings: ISideEncoding,
   options?: IEAN13Options,
-): IEncoding[] {
+): ReadonlyArray<IEncoding> {
   const encoded: IEncoding[] = [
     { data: SIDE_BIN },
     { data: encodings.left, text: leftSide(data) },
@@ -60,14 +62,14 @@ function encodeGuarded(
   ];
 
   if (options?.readable ?? true) {
-    encoded.unshift({ data: '00000000', text: data[0] });
-    if (options?.quietZone) encoded.push({ data: '00000000', text: '>' });
+    encoded.unshift({ data: EMPTY_BIN, text: data[0] });
+    if (options?.quietZone) encoded.push({ data: EMPTY_BIN, text: '>' });
   }
 
   return encoded;
 }
 
-function encodeFlat(data: string, encodings: ISideEncoding): IEncoding[] {
+function encodeFlat(data: string, encodings: ISideEncoding): ReadonlyArray<IEncoding> {
   return [{
     data: [SIDE_BIN, encodings.left, MIDDLE_BIN, encodings.right, SIDE_BIN].join(''),
     text: data,

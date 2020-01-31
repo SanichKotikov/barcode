@@ -3,8 +3,10 @@ import { BINARIES } from './constants';
 function encode(data: string, structure: string, separator?: string) {
   let encoded = data
     .split('')
-    .map((val, idx) => BINARIES[structure[idx]])
-    .map((val, idx) => (val ? val[data[idx]] : ''));
+    .map((val, idx) => {
+      const binary: string[] = BINARIES[structure[idx]];
+      return binary[data[idx]] as string;
+    });
 
   if (separator) {
     const last = data.length - 1;

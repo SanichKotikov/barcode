@@ -4,7 +4,7 @@ import renderSvg from '../../packages/svg/src';
 
 interface IModule {
   valid: (input: string) => boolean;
-  encode: (input: string, options?: any) => IEncoding[];
+  encode: (input: string, options?: any) => ReadonlyArray<IEncoding>;
 }
 
 const REDUCE = 0.28651;

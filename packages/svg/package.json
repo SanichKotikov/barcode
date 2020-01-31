@@ -1,6 +1,6 @@
 {
   "name": "@es-barcodes/svg",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "svg render for bar-code encoding",
   "main": "lib/index.js",
   "module": "lib/index.js",
