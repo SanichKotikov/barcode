@@ -17,6 +17,7 @@ function valid(data: string) {
 }
 
 function encode(data: string): IEncoding[] {
+  if (!valid(data)) throw new RangeError();
   const structure = EAN5_STRUCTURE[checksum(data)];
   return [{
     data: '1011' + encodeEAN(data, structure, '01'),
